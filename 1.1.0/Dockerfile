@@ -31,7 +31,7 @@ RUN \
 WORKDIR /
 
 ENV \
-  PATH=/usr/local/ssl/bin:$PATH
+  PATH=/usr/local/ssl/bin:$PATH \
   SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
   SSL_CERT_DIR=/etc/ssl/certs
 
