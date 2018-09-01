@@ -25,8 +25,7 @@ RUN \
   apt remove -y build-essential checkinstall zlib1g-dev curl && \
   apt-get autoremove -y && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
-  update-ca-certificates -f
+  rm -rf /var/lib/apt/lists/*
 
 WORKDIR /
 
