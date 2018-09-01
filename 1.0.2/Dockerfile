@@ -1,9 +1,11 @@
 FROM ubuntu:18.04
 
-ENV VERSION=1.0.2p
-ENV SHA256=50a98e07b1a89eb8f6a99477f262df71c6fa7bef77df4dc83025a2845c827d00
+ENV \
+  VERSION=1.0.2p \
+  SHA256=50a98e07b1a89eb8f6a99477f262df71c6fa7bef77df4dc83025a2845c827d00
 
-RUN apt update && apt install -y build-essential checkinstall zlib1g-dev curl && \
+RUN \
+  apt update && apt install -y build-essential checkinstall zlib1g-dev curl && \
   cd /usr/local/src/ && \
   curl https://www.openssl.org/source/openssl-${VERSION}.tar.gz -o openssl-${VERSION}.tar.gz && \
   sha256sum openssl-${VERSION}.tar.gz | grep ${SHA256} && \
@@ -23,10 +25,14 @@ RUN apt update && apt install -y build-essential checkinstall zlib1g-dev curl &&
   apt remove -y build-essential checkinstall zlib1g-dev curl && \
   apt-get autoremove -y && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  update-ca-certificates -f
 
 WORKDIR /
 
-ENV PATH /usr/local/ssl/bin:$PATH
+ENV \
+  PATH=/usr/local/ssl/bin:$PATH
+  SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+  SSL_CERT_DIR=/etc/ssl/certs
 
 ENTRYPOINT [ "openssl" ]
