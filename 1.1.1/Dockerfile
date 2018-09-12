@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 
 ENV \
-  VERSION=1.1.1-pre9 \
-  SHA256=95ebdfbb05e8451fb01a186ccaa4a7da0eff9a48999ede9fe1a7d90db75ccb4c
+  VERSION=1.1.1 \
+  SHA256=2836875a0f89c03d0fdf483941512613a50cfb421d6fd94b9f41d7279d586a3d
 
 RUN \
   apt update && apt install -y build-essential checkinstall zlib1g-dev curl && \
