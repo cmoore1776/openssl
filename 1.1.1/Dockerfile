@@ -5,7 +5,7 @@ ENV \
   SHA256=f6fb3079ad15076154eda9413fed42877d668e7069d9b87396d0804fdb3f4c90
 
 RUN \
-  apt update && apt install -y build-essential checkinstall zlib1g-dev curl && \
+  apt update && apt upgrade -y && apt install -y build-essential checkinstall zlib1g-dev curl && \
   cd /usr/local/src/ && \
   curl https://www.openssl.org/source/openssl-${VERSION}.tar.gz -o openssl-${VERSION}.tar.gz && \
   sha256sum openssl-${VERSION}.tar.gz | grep ${SHA256} && \
