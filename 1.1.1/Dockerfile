@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 
 ENV \
-  VERSION=1.1.1d \
-  SHA256=1e3a91bc1f9dfce01af26026f856e064eab4c8ee0a8f457b5ae30b40b8b711f2
+  VERSION=1.1.1e \
+  SHA256=694f61ac11cb51c9bf73f54e771ff6022b0327a43bbdfa1b2f19de1662a6dcbe
 
 RUN \
   apt update && apt upgrade -y && apt install -y build-essential checkinstall zlib1g-dev curl && \
@@ -13,7 +13,7 @@ RUN \
   cd /usr/local/src/openssl-${VERSION} && \
   ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && \
   make && \
-  echo "make test disabled in version 1.1.1d" && \
+  make test && \
   make install && \
   cd /etc/ld.so.conf.d/ && \
   echo "/usr/local/ssl/lib" > openssl-${VERSION}.conf && \
