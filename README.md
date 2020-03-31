@@ -6,7 +6,7 @@ Dockerfile for various versions of openssl, based on Ubuntu 18.04 and built from
 
 ```bash
 docker run --rm shamelesscookie/openssl:latest version
-OpenSSL 1.1.1e  10 Sep 2019
+OpenSSL 1.1.1f  31 Mar 2020
 
 docker run --rm shamelesscookie/openssl:1.1.0 version
 OpenSSL 1.1.0l  10 Sep 2019
