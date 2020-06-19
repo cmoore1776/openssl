@@ -1,8 +1,9 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV \
   VERSION=1.0.2u \
-  SHA256=ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16
+  SHA256=ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16 \
+  DEBIAN_FRONTEND=noninteractive
 
 RUN \
   apt update && apt upgrade -y && apt install -y build-essential checkinstall zlib1g-dev curl && \
