@@ -9,7 +9,7 @@ docker run --rm shamelesscookie/openssl:latest version
 OpenSSL 1.1.1h  22 Sep 2020
 
 docker run --rm shamelesscookie/openssl:3.0.0 version
-OpenSSL 3.0.0-alpha8 5 Nov 2020 (Library: OpenSSL 3.0.0-alpha8 5 Nov 2020)
+OpenSSL 3.0.0-alpha9 26 Nov 2020 (Library: OpenSSL 3.0.0-alpha9 26 Nov 2020)
 
 docker run --rm shamelesscookie/openssl:1.1.0 version
 OpenSSL 1.1.0l  10 Sep 2019
