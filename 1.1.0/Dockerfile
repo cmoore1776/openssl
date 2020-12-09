@@ -6,7 +6,11 @@ ENV \
   DEBIAN_FRONTEND=noninteractive
 
 RUN \
+  echo "deb http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse" >> /etc/apt/sources.list && \
+  echo "deb http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+  echo "deb http://archive.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse" >> /etc/apt/sources.list && \
   apt update && apt upgrade -y && apt install -y build-essential checkinstall zlib1g-dev curl && \
+  apt install -y --allow-downgrades perl=5.26.1-6ubuntu0.5 perl-base=5.26.1-6ubuntu0.5 perl-modules-5.26 libperl5.26 && \
   cd /usr/local/src/ && \
   curl https://www.openssl.org/source/openssl-${VERSION}.tar.gz -o openssl-${VERSION}.tar.gz && \
   sha256sum openssl-${VERSION}.tar.gz | grep ${SHA256} && \
