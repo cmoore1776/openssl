@@ -1,8 +1,8 @@
 FROM ubuntu:20.04
 
 ENV \
-  VERSION=1.1.1i \
-  SHA256=e8be6a35fe41d10603c3cc635e93289ed00bf34b79671a3a4de64fcee00d5242 \
+  VERSION=1.1.1j \
+  SHA256=aaf2fcb575cdf6491b98ab4829abf78a3dec8402b8b81efc8f23c00d443981bf \
   DEBIAN_FRONTEND=noninteractive
 
 RUN \
