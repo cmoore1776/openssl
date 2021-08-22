@@ -1,32 +1,26 @@
-FROM ubuntu:20.04
+FROM alpine:3.14
 
-ENV \
-  VERSION=1.1.1k \
-  SHA256=892a0875b9872acd04a9fde79b1f943075d5ea162415de3047c327df33fbaee5 \
-  DEBIAN_FRONTEND=noninteractive
+ARG VERSION SHA256
 
 RUN \
-  apt update && apt upgrade -y && apt install -y build-essential checkinstall zlib1g-dev curl && \
-  cd /usr/local/src/ && \
+  apk update && apk add alpine-sdk perl zlib-dev linux-headers curl && \
+  mkdir -p /usr/local/src/ && cd /usr/local/src/ && \
   curl https://www.openssl.org/source/openssl-${VERSION}.tar.gz -o openssl-${VERSION}.tar.gz && \
   sha256sum openssl-${VERSION}.tar.gz | grep ${SHA256} && \
   tar -xf openssl-${VERSION}.tar.gz && \
   cd /usr/local/src/openssl-${VERSION} && \
   ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && \
   make && \
-  make test && \
+  make TESTS=-test_afalg test && \
   make install && \
-  cd /etc/ld.so.conf.d/ && \
-  echo "/usr/local/ssl/lib" > openssl-${VERSION}.conf && \
-  ldconfig -v && \
-  rm /usr/bin/c_rehash && \
-  rm /usr/bin/openssl && \
+  apk del alpine-sdk perl zlib-dev linux-headers curl && \
+  adduser -D -g '' openssl && \
+  echo "/usr/local/ssl/lib:/lib:/usr/local/lib:/usr/lib" > /etc/ld-musl-$(arch).path && \
   rm /usr/local/src/openssl-${VERSION}.tar.gz && \
   rm -rf /usr/local/src/openssl-${VERSION} && \
-  apt remove -y build-essential checkinstall zlib1g-dev curl && \
-  apt-get autoremove -y && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/cache/apk/*
+
+USER openssl
 
 WORKDIR /
 
