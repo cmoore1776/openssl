@@ -23,9 +23,9 @@ OpenSSL 1.0.2u  20 Dec 2019
 ```bash
 export VERSION=1.1.1l
 export SHA256=0b7a3e5e59c34827fe0c3a74b7ec8baef302b98fa80088d7f9153aa16fa76bd1
-docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t shamelesscookie/openssl:latest -t shamelesscookie/openssl:${VERSION} --push .
+docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t shamelesscookie/openssl:latest -t shamelesscookie/openssl:${VERSION} --pull --push .
 
 export VERSION=3.0.0-beta2
 export SHA256=e76ab22879201b12f014393ee4becec7f264d8f6955b1036839128002868df71
-docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t shamelesscookie/openssl:${VERSION} --push .
+docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t shamelesscookie/openssl:${VERSION} --pull --push .
 ```
