@@ -3,7 +3,15 @@ FROM alpine:3.14
 ARG VERSION SHA256
 
 RUN \
-  apk update && apk add alpine-sdk perl zlib-dev linux-headers curl && \
+  apk update && \
+  apk upgrade && \
+  apk add \
+    alpine-sdk \
+    curl \
+    linux-headers \
+    perl \
+    zlib-dev \
+  && \
   mkdir -p /usr/local/src/ && cd /usr/local/src/ && \
   curl https://www.openssl.org/source/openssl-${VERSION}.tar.gz -o openssl-${VERSION}.tar.gz && \
   sha256sum openssl-${VERSION}.tar.gz | grep ${SHA256} && \
@@ -13,7 +21,13 @@ RUN \
   make && \
   make TESTS=-test_afalg test && \
   make install && \
-  apk del alpine-sdk perl zlib-dev linux-headers curl && \
+  apk del \
+    alpine-sdk \
+    curl \
+    linux-headers \
+    perl \
+    zlib-dev \
+  && \
   adduser -D -g '' openssl && \
   echo "/usr/local/ssl/lib:/lib:/usr/local/lib:/usr/lib" > /etc/ld-musl-$(arch).path && \
   rm /usr/local/src/openssl-${VERSION}.tar.gz && \
