@@ -6,10 +6,10 @@ Dockerfile for various versions of openssl, based on Alpine Linux and built from
 
 ```bash
 docker run --rm shamelesscookie/openssl:latest version
-OpenSSL 1.1.1l  24 Aug 2021
+OpenSSL 3.0.0 7 sep 2021 (Library: OpenSSL 3.0.0 7 sep 2021)
 
-docker run --rm shamelesscookie/openssl:3.0.0 version
-OpenSSL 3.0.0-alpha13 11 Mar 2021 (Library: OpenSSL 3.0.0-alpha13 11 Mar 2021)
+docker run --rm shamelesscookie/openssl:1.1.1 version
+OpenSSL 1.1.1i  8 Dec 2020
 
 docker run --rm shamelesscookie/openssl:1.1.0 version
 OpenSSL 1.1.0l  10 Sep 2019
