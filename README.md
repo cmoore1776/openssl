@@ -1,6 +1,6 @@
 # openssl
 
-Dockerfile for various versions of openssl, based on Alpine Linux and built from source.
+openssl, based on Alpine Linux and built from source.
 
 ## Usage
 
