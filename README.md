@@ -5,27 +5,25 @@ openssl, running on Alpine Linux and built from source.
 ## Usage
 
 ```bash
-docker run --rm shamelesscookie/openssl:latest version
-OpenSSL 3.0.7 1 Nov 2022 (Library: OpenSSL 3.0.7 1 Nov 2022)
+docker run --rm cmoore1776/openssl:latest version
+OpenSSL 3.0.8 7 Feb 2023 (Library: OpenSSL 3.0.8 7 Feb 2023)
 
-docker run --rm shamelesscookie/openssl:1.1.1 version
-OpenSSL 1.1.1s  1 Nov 2022
-
-docker run --rm shamelesscookie/openssl:1.1.0 version
-OpenSSL 1.1.0l  10 Sep 2019
-
-docker run --rm shamelesscookie/openssl:1.0.2 version
-OpenSSL 1.0.2u  20 Dec 2019
+docker run --rm cmoore1776/openssl:1.1.1 version
+OpenSSL 1.1.1t  7 Feb 2023
 ```
 
 ## build
 
 ```bash
-export VERSION=3.0.7
-export SHA256=83049d042a260e696f62406ac5c08bf706fd84383f945cf21bd61e9ed95c396e
-docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t shamelesscookie/openssl:latest -t shamelesscookie/openssl:${VERSION} --pull --push .
+export VERSION=3.1.0-beta1
+export SHA256=e0d4bb52f7f9a745127b533be1c42bd4743467b180e7bc28a3d6ed40410c86d0
+docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t cmoore1776/openssl:${VERSION} --pull --push .
 
-export VERSION=1.1.1s
-export SHA256=c5ac01e760ee6ff0dab61d6b2bbd30146724d063eb322180c6f18a6f74e4b6aa
-docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t shamelesscookie/openssl:1.1.1 -t shamelesscookie/openssl:${VERSION} --pull --push .
+export VERSION=3.0.8
+export SHA256=6c13d2bf38fdf31eac3ce2a347073673f5d63263398f1f69d0df4a41253e4b3e
+docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t cmoore1776/openssl:latest -t cmoore1776/openssl:${VERSION} --pull --push .
+
+export VERSION=1.1.1t
+export SHA256=8dee9b24bdb1dcbf0c3d1e9b02fb8f6bf22165e807f45adeb7c9677536859d3b
+docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t cmoore1776/openssl:1.1.1 -t cmoore1776/openssl:${VERSION} --pull --push .
 ```
