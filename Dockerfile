@@ -1,38 +1,37 @@
-FROM alpine:3.17
+FROM debian:bookworm-slim
 
 ARG VERSION SHA256
 
 RUN \
-  apk update && \
-  apk upgrade && \
-  apk add \
-    alpine-sdk \
+  apt update && \
+  apt -y upgrade && \
+  apt -y install \
+    build-essential \
     curl \
-    linux-headers \
     perl \
-    zlib-dev \
+    zlib1g-dev \
   && \
   mkdir -p /usr/local/src/ && cd /usr/local/src/ && \
   curl https://www.openssl.org/source/openssl-${VERSION}.tar.gz -o openssl-${VERSION}.tar.gz && \
   sha256sum openssl-${VERSION}.tar.gz | grep ${SHA256} && \
   tar -xf openssl-${VERSION}.tar.gz && \
   cd /usr/local/src/openssl-${VERSION} && \
-  ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && \
-  make && \
+  apt -y remove libssl-dev && \
+  ./config "linux-$(uname -m)" --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && \
+  make -j$(nproc) && \
   make TESTS=-test_afalg test && \
   make install && \
-  apk del \
-    alpine-sdk \
+  apt -y remove \
+    build-essential \
     curl \
-    linux-headers \
     perl \
-    zlib-dev \
+    zlib1g-dev \
   && \
-  adduser -D -g '' openssl && \
-  echo "/usr/local/ssl/lib:/lib:/usr/local/lib:/usr/lib" > /etc/ld-musl-$(arch).path && \
+  apt -y autoremove && \
+  useradd openssl && \
   rm /usr/local/src/openssl-${VERSION}.tar.gz && \
   rm -rf /usr/local/src/openssl-${VERSION} && \
-  rm -rf /var/cache/apk/*
+  rm -rf /var/lib/apt/lists/*
 
 USER openssl
 
