@@ -17,10 +17,12 @@ RUN \
   tar -xf openssl-${VERSION}.tar.gz && \
   cd /usr/local/src/openssl-${VERSION} && \
   apt -y remove libssl-dev && \
-  ./config "linux-$(uname -m)" --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && \
+  ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && \
   make -j$(nproc) && \
   make TESTS=-test_afalg test && \
   make install && \
+  echo "/usr/local/ssl/lib" > /etc/ld.so.conf.d/openssl.conf && \
+  ldconfig && \
   apt -y remove \
     build-essential \
     curl \
