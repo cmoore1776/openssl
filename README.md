@@ -6,24 +6,27 @@ openssl, running on Debian Bookworm and built from source.
 
 ```bash
 docker run --rm cmoore1776/openssl:latest version
-OpenSSL 3.1.0 14 Mar 2023 (Library: OpenSSL 3.1.0 14 Mar 2023)
+OpenSSL 3.1.1 30 May 2023 (Library: OpenSSL 3.1.1 30 May 2023)
+
+docker run --rm cmoore1776/openssl:3.0.9 version
+OpenSSL 3.0.9 30 May 2023 (Library: OpenSSL 3.0.9 30 May 2023)
 
 docker run --rm cmoore1776/openssl:1.1.1 version
-OpenSSL 1.1.1t  7 Feb 2023
+OpenSSL 1.1.1u  30 May 2023
 ```
 
 ## build
 
 ```bash
-export VERSION=3.1.0
-export SHA256=aaa925ad9828745c4cad9d9efeb273deca820f2cdcf2c3ac7d7c1212b7c497b4
+export VERSION=3.1.1
+export SHA256=b3aa61334233b852b63ddb048df181177c2c659eb9d4376008118f9c08d07674
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t cmoore1776/openssl:latest -t cmoore1776/openssl:${VERSION} --pull --push .
 
-export VERSION=3.0.8
-export SHA256=6c13d2bf38fdf31eac3ce2a347073673f5d63263398f1f69d0df4a41253e4b3e
+export VERSION=3.0.9
+export SHA256=eb1ab04781474360f77c318ab89d8c5a03abc38e63d65a603cabbf1b00a1dc90
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t cmoore1776/openssl:${VERSION} --pull --push .
 
-export VERSION=1.1.1t
-export SHA256=8dee9b24bdb1dcbf0c3d1e9b02fb8f6bf22165e807f45adeb7c9677536859d3b
+export VERSION=1.1.1u
+export SHA256=e2f8d84b523eecd06c7be7626830370300fbcc15386bf5142d72758f6963ebc6
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t cmoore1776/openssl:1.1.1 -t cmoore1776/openssl:${VERSION} --pull --push .
 ```
