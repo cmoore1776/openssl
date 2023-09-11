@@ -12,7 +12,7 @@ docker run --rm cmoore1776/openssl:3.0.10 version
 OpenSSL 3.0.10 1 Aug 2023 (Library: OpenSSL 3.0.10 1 Aug 2023)
 
 docker run --rm cmoore1776/openssl:1.1.1 version
-OpenSSL 1.1.1v  1 Aug 2023
+OpenSSL 1.1.1w  11 Sep 2023
 ```
 
 ## build
@@ -26,7 +26,7 @@ export VERSION=3.0.10
 export SHA256=1761d4f5b13a1028b9b6f3d4b8e17feb0cedc9370f6afe61d7193d2cdce83323
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t cmoore1776/openssl:${VERSION} --pull --push .
 
-export VERSION=1.1.1v
-export SHA256=d6697e2871e77238460402e9362d47d18382b15ef9f246aba6c7bd780d38a6b0
+export VERSION=1.1.1w
+export SHA256=cf3098950cb4d853ad95c0841f1f9c6d3dc102dccfcacd521d93925208b76ac8
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 -t cmoore1776/openssl:1.1.1 -t cmoore1776/openssl:${VERSION} --pull --push .
 ```
