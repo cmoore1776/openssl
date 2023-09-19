@@ -1,6 +1,6 @@
 # openssl
 
-openssl, running on Debian Bookworm and built from source.
+openssl, running on Debian Trixie and built from source.
 
 ## Usage
 

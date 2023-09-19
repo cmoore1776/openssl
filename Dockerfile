@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 ARG VERSION SHA256
 
@@ -8,7 +8,7 @@ RUN \
   apt -y install \
     build-essential \
     curl \
-    perl \
+    perl-base \
     zlib1g-dev \
   && \
   mkdir -p /usr/local/src/ && cd /usr/local/src/ && \
@@ -23,10 +23,10 @@ RUN \
   make install && \
   echo "/usr/local/ssl/lib" > /etc/ld.so.conf.d/openssl.conf && \
   ldconfig && \
-  apt -y remove \
+  apt -y remove --allow-remove-essential \
     build-essential \
     curl \
-    perl \
+    perl-base \
     zlib1g-dev \
   && \
   apt -y autoremove && \
