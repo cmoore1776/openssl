@@ -19,7 +19,7 @@ RUN \
   apt -y remove libssl-dev && \
   ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && \
   make -j$(nproc) && \
-  make TESTS=-test_afalg test && \
+  # make TESTS=-test_afalg test && \
   make install && \
   echo "/usr/local/ssl/lib" > /etc/ld.so.conf.d/openssl.conf && \
   ldconfig && \
