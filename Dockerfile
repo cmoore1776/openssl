@@ -12,7 +12,7 @@ RUN \
     zlib1g-dev \
   && \
   mkdir -p /usr/local/src/ && cd /usr/local/src/ && \
-  curl https://www.openssl.org/source/openssl-${VERSION}.tar.gz -o openssl-${VERSION}.tar.gz && \
+  curl -L https://github.com/openssl/openssl/releases/download/openssl-${VERSION}/openssl-${VERSION}.tar.gz -o openssl-${VERSION}.tar.gz && \
   sha256sum openssl-${VERSION}.tar.gz | grep ${SHA256} && \
   tar -xf openssl-${VERSION}.tar.gz && \
   cd /usr/local/src/openssl-${VERSION} && \

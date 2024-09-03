@@ -6,16 +6,16 @@ openssl, running on Debian Trixie and built from source.
 
 ```bash
 $ docker run --rm cmoore1776/openssl:latest version
-OpenSSL 3.3.0 9 Apr 2024 (Library: OpenSSL 3.3.0 9 Apr 2024)
+OpenSSL 3.3.2 3 Sep 2024 (Library: OpenSSL 3.3.2 3 Sep 2024)
 
 $ docker run --rm cmoore1776/openssl:3.2 version
-OpenSSL 3.2.1 30 Jan 2024 (Library: OpenSSL 3.2.1 30 Jan 2024)
+OpenSSL 3.2.3 3 Sep 2024 (Library: OpenSSL 3.2.3 3 Sep 2024)
 
 $ docker run --rm cmoore1776/openssl:3.1 version
-OpenSSL 3.1.5 30 Jan 2024 (Library: OpenSSL 3.1.5 30 Jan 2024)
+OpenSSL 3.1.7 3 Sep 2024 (Library: OpenSSL 3.1.7 3 Sep 2024)
 
 $ docker run --rm cmoore1776/openssl:3.0 version
-OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)
+OpenSSL 3.0.15 3 Sep 2024 (Library: OpenSSL 3.0.15 3 Sep 2024)
 
 $ docker run --rm cmoore1776/openssl:1.1.1 version
 OpenSSL 1.1.1w  11 Sep 2023
@@ -24,27 +24,27 @@ OpenSSL 1.1.1w  11 Sep 2023
 ## build
 
 ```bash
-export VERSION=3.3.0
-export SHA256=53e66b043322a606abf0087e7699a0e033a37fa13feb9742df35c3a33b18fb02
+export VERSION=3.3.2
+export SHA256=2e8a40b01979afe8be0bbfb3de5dc1c6709fedb46d6c89c10da114ab5fc3d281
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 \
 -t cmoore1776/openssl:latest \
 -t cmoore1776/openssl:3.3 \
 -t cmoore1776/openssl:${VERSION} --pull --push .
 
-export VERSION=3.2.1
-export SHA256=83c7329fe52c850677d75e5d0b0ca245309b97e8ecbcfdc1dfdc4ab9fac35b39
+export VERSION=3.2.3
+export SHA256=52b5f1c6b8022bc5868c308c54fb77705e702d6c6f4594f99a0df216acf46239
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 \
 -t cmoore1776/openssl:3.2 \
 -t cmoore1776/openssl:${VERSION} --pull --push .
 
-export VERSION=3.1.5
-export SHA256=6ae015467dabf0469b139ada93319327be24b98251ffaeceda0221848dc09262
+export VERSION=3.1.7
+export SHA256=053a31fa80cf4aebe1068c987d2ef1e44ce418881427c4464751ae800c31d06c
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 \
 -t cmoore1776/openssl:3.1 \
 -t cmoore1776/openssl:${VERSION} --pull --push .
 
-export VERSION=3.0.13
-export SHA256=88525753f79d3bec27d2fa7c66aa0b92b3aa9498dafd93d7cfa4b3780cdae313
+export VERSION=3.0.15
+export SHA256=23c666d0edf20f14249b3d8f0368acaee9ab585b09e1de82107c66e1f3ec9533
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 \
 -t cmoore1776/openssl:3.0 \
 -t cmoore1776/openssl:${VERSION} --pull --push .
