@@ -6,6 +6,9 @@ openssl, running on Debian Trixie and built from source.
 
 ```bash
 $ docker run --rm cmoore1776/openssl:latest version
+OpenSSL 3.6.0 1 Oct 2025 (Library: OpenSSL 3.6.0 1 Oct 2025)
+
+$ docker run --rm cmoore1776/openssl:3.5 version
 OpenSSL 3.5.4 30 Sep 2025 (Library: OpenSSL 3.5.4 30 Sep 2025)
 
 $ docker run --rm cmoore1776/openssl:3.4 version
@@ -30,10 +33,16 @@ OpenSSL 1.1.1w  11 Sep 2023
 ## build
 
 ```bash
+export VERSION=3.6.0
+export SHA256=b6a5f44b7eb69e3fa35dbf15524405b44837a481d43d81daddde3ff21fcbb8e9
+docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 \
+-t cmoore1776/openssl:latest \
+-t cmoore1776/openssl:3.6 \
+-t cmoore1776/openssl:${VERSION} --pull --push .
+
 export VERSION=3.5.4
 export SHA256=967311f84955316969bdb1d8d4b983718ef42338639c621ec4c34fddef355e99
 docker buildx build --no-cache --platform linux/amd64,linux/arm64 --build-arg VERSION --build-arg SHA256 \
--t cmoore1776/openssl:latest \
 -t cmoore1776/openssl:3.5 \
 -t cmoore1776/openssl:${VERSION} --pull --push .
 
